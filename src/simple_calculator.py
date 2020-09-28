@@ -2,6 +2,16 @@ class Calculator:
     def __init__(self, init_value=0):
         self.value = init_value
 
+    def __setattr__(self, item, value):
+        if len(self.__dict__) <= 10:
+            self.__dict__[item] = value
+        else:
+            print('10 attributes already created')
+
+    def __iter__(self):
+        print(self.value)
+        return self
+
     def __add__(self, other):
         value = other.value if isinstance(other, Calculator) else other
         return Calculator(self.value + value)
@@ -75,11 +85,25 @@ class Calculator:
         return self.value
 
     def __str__(self):
-        return str(self.value)
+        return str(self.__dict__)
 
 
 if __name__ == '__main__':
-    calculator = Calculator(5)
-    print(calculator)
+    # calculator = Calculator(5)
+    # calculator.hhh = 1
+    # calculator.ll = 1
+    # calculator.ppp = 1
+    # calculator.jjj = 1
+    # calculator.ttt = 1
+    # calculator.ggg = 1
+    # calculator.lll = 1
+    # calculator.ttt = 1
+    # calculator.www = 1
+    # calculator.yyy = 1
+    # calculator.ooo = 1
+    # calculator.uuu = 1
+
+    # print(calculator)
     # print(calculator.add(1, 2, 3, 5.1).multiply(4, 0.123).subtract(4, 1, -100).divide(5, integer_divide=True))
-    print(calculator ** 3)
+    print((Calculator(3) ** 3) + 4)
+    print(3 ** 3)
